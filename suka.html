@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sebuah Tanya</title>
+    <style>
+        /* Mengambil font serif klasik dan elegan dari Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* Warna latar belakang gelap (Midnight) agar terkesan tenang */
+            background-color: #0f1014; 
+            color: #e0e0e0;
+            font-family: 'Playfair Display', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+            max-width: 800px;
+            /* Animasi muncul secara perlahan selama 4 detik */
+            animation: slowFade 4s ease-in-out forwards;
+            opacity: 0;
+        }
+
+        .quote {
+            font-size: 28px;
+            line-height: 1.8;
+            font-weight: 400;
+            letter-spacing: 1px;
+            font-style: italic;
+            /* Warna teks krem keemasan yang tidak mencolok */
+            color: #d4c5b0; 
+        }
+
+        .quote::before {
+            content: "“";
+            font-size: 40px;
+            color: #444;
+            vertical-align: bottom;
+            margin-right: 5px;
+        }
+
+        .quote::after {
+            content: "”";
+            font-size: 40px;
+            color: #444;
+            vertical-align: top;
+            margin-left: 5px;
+        }
+
+        .divider {
+            width: 40px;
+            height: 1px;
+            background-color: #333;
+            margin: 40px auto 0;
+        }
+
+        /* Keyframes untuk animasi halus */
+        @keyframes slowFade {
+            0% {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="quote">Sejauh ini, apakah rayuku belum juga berhasil mengetuk pintu hatimu?</h1>
+        <div class="divider"></div>
+    </div>
+
+</body>
+</html>
