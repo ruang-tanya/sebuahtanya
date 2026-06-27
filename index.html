@@ -129,4 +129,12 @@
             
             currentIndex = (currentIndex + 1) % quotes.length;
             
-            quotes[currentIndex].classList.
+            quotes[currentIndex].classList.add('active');
+        }
+
+        // Teks berganti setiap 7 detik (memberi waktu lebih lama untuk meresapi maknanya)
+        setInterval(showNextQuote, 7000);
+    </script>
+
+</body>
+</html>
