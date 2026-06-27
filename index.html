@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sebuah Tanya</title>
     <style>
-        /* Mengambil font serif klasik dan elegan dari Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
 
         * {
@@ -15,7 +14,6 @@
         }
 
         body {
-            /* Warna latar belakang gelap (Midnight) agar terkesan tenang */
             background-color: #0f1014; 
             color: #e0e0e0;
             font-family: 'Playfair Display', serif;
@@ -24,25 +22,57 @@
             align-items: center;
             height: 100vh;
             overflow: hidden;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Efek cahaya temaram yang konsisten dan lembut di latar belakang */
+        .ambient-light {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(212, 197, 176, 0.08) 0%, rgba(15, 16, 20, 0) 70%);
+            border-radius: 50%;
+            filter: blur(50px);
+            animation: pulseLight 8s infinite alternate ease-in-out;
+            z-index: 0;
         }
 
         .container {
-            text-align: center;
-            padding: 40px;
+            position: relative;
+            width: 85%;
             max-width: 800px;
-            /* Animasi muncul secara perlahan selama 4 detik */
-            animation: slowFade 4s ease-in-out forwards;
-            opacity: 0;
+            height: 250px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1;
         }
 
+        /* Transisi teks dengan efek blur sinematik */
         .quote {
             font-size: 28px;
             line-height: 1.8;
             font-weight: 400;
             letter-spacing: 1px;
             font-style: italic;
-            /* Warna teks krem keemasan yang tidak mencolok */
             color: #d4c5b0; 
+            position: absolute;
+            opacity: 0;
+            filter: blur(10px); /* Teks sedikit blur saat awal */
+            transition: opacity 2.5s ease-in-out, filter 2.5s ease-in-out, transform 2.5s ease-in-out;
+            transform: translateY(15px);
+            width: 100%;
+        }
+
+        .quote.active {
+            opacity: 1;
+            filter: blur(0); /* Teks menjadi fokus */
+            transform: translateY(0);
         }
 
         .quote::before {
@@ -64,29 +94,39 @@
         .divider {
             width: 40px;
             height: 1px;
-            background-color: #333;
-            margin: 40px auto 0;
+            background-color: #444;
+            margin-top: 120px;
+            position: absolute;
+            bottom: -20px;
         }
 
-        /* Keyframes untuk animasi halus */
-        @keyframes slowFade {
-            0% {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Animasi cahaya agar web terasa "hidup" tapi tetap tenang */
+        @keyframes pulseLight {
+            0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.6; }
+            100% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
         }
     </style>
 </head>
 <body>
 
+    <div class="ambient-light"></div>
+
     <div class="container">
-        <h1 class="quote">Sejauh ini, apakah rayuku belum juga berhasil mengetuk pintu hatimu?</h1>
+        <h1 class="quote active">Sejauh ini, apakah rayuku belum juga berhasil mengetuk pintu hatimu?</h1>
+        <h1 class="quote">Atau mungkin, aku harus belajar merangkai kata lebih indah lagi agar kau menyadarinya?</h1>
+        <h1 class="quote">Bukan maksudku terburu-buru, aku hanya ingin memastikan kau tahu apa yang kurasa.</h1>
+        <h1 class="quote">Berkelanalah ke mana pun kamu mau. Semoga pelabuhan terakhir dari seluruh rangkaian perjalananmu adalah aku.</h1>
+        
         <div class="divider"></div>
     </div>
 
-</body>
-</html>
+    <script>
+        const quotes = document.querySelectorAll('.quote');
+        let currentIndex = 0;
+
+        function showNextQuote() {
+            quotes[currentIndex].classList.remove('active');
+            
+            currentIndex = (currentIndex + 1) % quotes.length;
+            
+            quotes[currentIndex].classList.
